@@ -5,8 +5,8 @@ var path = require('path');
 var logger = require('morgan');
 var session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const dashboardRouter = require("./routes/dashboard");         
+const publicRouter = require("./routes/public");
 
 var app = express();
 
@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', publicRouter);
+app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 
 //express-session
 app.use(session({
-  secret: KSKGJkskdi35u7593823jdnn3279f87vdshnqkhKHLKHLKHNkinaIO,
+  secret: "KSKGJkskdi35u7593823jdnn3279f87vdshnqkhKHLKHLKHNkinaIO",
   resave: true,
   saveUninitialized: false
 }));
